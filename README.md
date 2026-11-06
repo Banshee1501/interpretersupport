@@ -57,6 +57,14 @@ Si usas audífonos Bluetooth y solo quieres transcribir lo que dicen los demás 
 tu propia voz), "Mezcla estéreo" normalmente **no funciona** con salida Bluetooth
 (solo capta la placa de sonido interna). Usa **VB-CABLE** así:
 
+> **Atajo:** [`scripts/setup-windows-bluetooth-audio.ps1`](scripts/setup-windows-bluetooth-audio.ps1)
+> automatiza los pasos 1, 2 y 4 (instalar VB-CABLE y fijarlo como dispositivo de
+> reproducción/grabación predeterminado). Ejecútalo como Administrador:
+> `powershell -ExecutionPolicy Bypass -File .\setup-windows-bluetooth-audio.ps1`
+> Los pasos 3 y 5 (marcar "Escuchar este dispositivo" y elegir el micrófono en la
+> app de videollamada) solo se pueden hacer desde la interfaz gráfica de
+> Windows — no existe comando ni API para automatizarlos.
+
 1. Instala [VB-CABLE](https://vb-audio.com/Cable/) (gratis) y reinicia Windows si
    lo pide.
 2. *Configuración de sonido* → Salida: pon **"CABLE Input (VB-Audio Virtual
