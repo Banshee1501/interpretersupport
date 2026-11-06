@@ -51,6 +51,33 @@ transcribirá y traducirá en tiempo real todo el audio del sistema, incluida la
 llamada. El modo "Pestaña / pantalla" sigue siendo útil para grabar el audio y
 descargarlo al finalizar.
 
+### Windows + audífonos Bluetooth (solo audio del sistema, sin tu voz)
+
+Si usas audífonos Bluetooth y solo quieres transcribir lo que dicen los demás (no
+tu propia voz), "Mezcla estéreo" normalmente **no funciona** con salida Bluetooth
+(solo capta la placa de sonido interna). Usa **VB-CABLE** así:
+
+1. Instala [VB-CABLE](https://vb-audio.com/Cable/) (gratis) y reinicia Windows si
+   lo pide.
+2. *Configuración de sonido* → Salida: pon **"CABLE Input (VB-Audio Virtual
+   Cable)"** como dispositivo de reproducción predeterminado. Ahora todo el audio
+   del sistema (la llamada incluida) va a VB-CABLE en vez de a tus audífonos.
+3. Para seguir escuchando por tus audífonos: *Panel de control* → Sonido →
+   pestaña **Grabación** → clic derecho en **"CABLE Output"** → Propiedades →
+   pestaña **Escuchar** → marca "Escuchar este dispositivo" → en "Reproducir a
+   través de" elige tus audífonos Bluetooth → Aceptar.
+4. *Configuración de sonido* → Entrada: pon **"CABLE Output (VB-Audio Virtual
+   Cable)"** como dispositivo de grabación predeterminado.
+5. En la app de la llamada (Zoom/Meet/Teams), selecciona manualmente tus
+   audífonos Bluetooth reales como micrófono (no "Predeterminado"), para que tu
+   voz siga yendo normal a la llamada.
+6. En el sitio, elige "Micrófono": transcribirá/traducirá solo lo que suena por
+   el sistema (los demás participantes), nunca tu propia voz.
+
+Revisa antes de cada llamada que el micrófono de la app de videollamada siga
+apuntando a tus audífonos Bluetooth (Windows a veces lo resetea al reconectar el
+Bluetooth).
+
 ## Límites conocidos
 
 - La Web Speech API depende de un servicio en la nube de Google; requiere conexión
