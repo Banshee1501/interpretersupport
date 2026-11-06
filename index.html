@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Intérprete en Vivo — Transcripción y Traducción en Tiempo Real</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-dot"></span>
+        <h1>Intérprete en Vivo</h1>
+      </div>
+      <div class="status" id="status">
+        <span class="status-dot" id="statusDot"></span>
+        <span id="statusText">Detenido</span>
+      </div>
+    </header>
+
+    <section class="controls">
+      <div class="control-group">
+        <label for="sourceSelect">Fuente de audio</label>
+        <select id="sourceSelect">
+          <option value="mic">Micrófono</option>
+          <option value="tab">Pestaña / pantalla (con audio)</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <label for="langFrom">Se habla en</label>
+        <select id="langFrom"></select>
+      </div>
+
+      <div class="control-group">
+        <label for="langTo">Traducir a</label>
+        <select id="langTo"></select>
+      </div>
+
+      <div class="control-group buttons">
+        <button id="startBtn" class="btn primary">▶ Iniciar</button>
+        <button id="stopBtn" class="btn danger" disabled>■ Detener</button>
+        <button id="clearBtn" class="btn ghost">Limpiar</button>
+      </div>
+    </section>
+
+    <div class="banner" id="banner" hidden></div>
+
+    <main class="panels">
+      <section class="panel">
+        <div class="panel-header">
+          <h2>Transcripción</h2>
+          <span class="badge" id="transcriptBadge">original</span>
+        </div>
+        <div class="panel-body" id="transcriptBody">
+          <p class="placeholder">La transcripción aparecerá aquí en cuanto inicies…</p>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-header">
+          <h2>Traducción</h2>
+          <span class="badge" id="translationBadge">tiempo real</span>
+        </div>
+        <div class="panel-body" id="translationBody">
+          <p class="placeholder">La traducción aparecerá aquí a medida que se procese cada frase…</p>
+        </div>
+      </section>
+    </main>
+
+    <div class="levelbar" id="levelWrap" hidden>
+      <span>Nivel de audio</span>
+      <div class="level-track"><div class="level-fill" id="levelFill"></div></div>
+      <a href="#" id="downloadLink" class="download-link" hidden download="grabacion-llamada.webm">Descargar audio grabado</a>
+    </div>
+
+    <footer class="help">
+      <details>
+        <summary>¿Cómo capturar el audio de una llamada (Zoom, Meet, Teams, etc.)?</summary>
+        <div class="help-body">
+          <p><strong>Modo Micrófono</strong> transcribe y traduce en tiempo real usando el motor de reconocimiento de voz del navegador. Funciona de inmediato para tu propia voz.</p>
+          <p><strong>Modo Pestaña / pantalla</strong> usa la captura de pantalla del navegador para tomar el audio de una pestaña, ventana o de todo el sistema (marca la casilla "Compartir audio" en el diálogo). Esto permite <em>grabar y medir el nivel</em> del audio de la llamada, pero los navegadores no permiten conectar ese audio directamente al motor de reconocimiento de voz — solo puede escuchar el micrófono por defecto del sistema operativo.</p>
+          <p>Para transcribir en vivo el audio de una llamada, la solución habitual (usada por herramientas de interpretación) es enrutar la salida de audio del sistema hacia un dispositivo de entrada virtual y luego seleccionarlo aquí como "Micrófono":</p>
+          <ul>
+            <li><strong>Windows:</strong> activa "Mezcla estéreo" (Stereo Mix) en Configuración de sonido, o instala <a href="https://vb-audio.com/Cablesplitter/" target="_blank" rel="noopener">VB-CABLE</a>, y ponlo como dispositivo de grabación predeterminado.</li>
+            <li><strong>macOS:</strong> instala <a href="https://existential.audio/blackhole/" target="_blank" rel="noopener">BlackHole</a> o <a href="https://rogueamoeba.com/loopback/" target="_blank" rel="noopener">Loopback</a> y úsalo como entrada predeterminada.</li>
+            <li><strong>Linux (PulseAudio/Pipewire):</strong> crea un monitor de salida con <code>pavucontrol</code> (pestaña "Grabación", selecciona "Monitor de..." como fuente) y ponlo como predeterminado.</li>
+          </ul>
+          <p>Con el dispositivo virtual como entrada predeterminada, elige "Micrófono" en esta app: escucharás y transcribirás en tiempo real todo lo que suene en el sistema, incluida la llamada.</p>
+          <p class="note">Nota: el reconocimiento de voz en vivo requiere Chrome o Edge (usan la Web Speech API). Requiere permiso de micrófono y una conexión activa a internet (el motor de voz y la traducción son servicios en la nube).</p>
+        </div>
+      </details>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
